@@ -1,0 +1,153 @@
+/* =========================
+   FUENTE GLOBAL
+========================= */
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+/* =========================
+   BODY / FONDO APP
+========================= */
+body {
+  background: #0f172a;
+  color: #f8fafc; /* texto principal claro */
+  margin: 0;
+}
+
+/* =========================
+   CONTENEDOR CENTRAL
+========================= */
+main {
+  padding: 20px;
+}
+
+/* =========================
+   TARJETAS
+========================= */
+.wallet-card {
+  background: #1e293b; /* más oscuro para destacar sobre el body */
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 12px 24px rgba(0,0,0,.15);
+  max-width: 420px;
+  margin: 0 auto;
+  color: #f8fafc; /* texto dentro de la tarjeta */
+}
+
+/* Tarjeta saldo */
+.balance-card {
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  color: #f8fafc;
+  border-radius: 18px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 15px 30px rgba(0,0,0,.25);
+}
+
+/* =========================
+   TEXTO
+========================= */
+.text-muted {
+  color: #cbd5e1 !important; /* gris claro para subtítulos */
+}
+
+/* =========================
+   BOTONES PRINCIPALES
+========================= */
+.action-btn {
+  background: #1e293b;
+  border-radius: 16px;
+  padding: 14px;
+  text-align: center;
+  color: #f8fafc; /* texto claro */
+  border: none;
+  transition: background .2s ease, transform .1s ease;
+}
+
+.action-btn:hover {
+  background: #334155;
+}
+
+.action-btn:active {
+  transform: scale(.97);
+}
+
+/* =========================
+   BOTÓN RESET
+========================= */
+.btn-reset {
+  background: #dc2626;
+  color: #f8fafc;
+  border: none;
+  border-radius: 14px;
+  padding: 12px;
+  font-size: .95rem;
+  font-weight: 500;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  margin: 16px 0;
+  transition: background .2s ease, transform .1s ease;
+}
+
+.btn-reset:hover {
+  background: #b91c1c;
+}
+
+.btn-reset:active {
+  transform: scale(.97);
+}
+
+/* =========================
+   MOVIMIENTOS
+========================= */
+.tx-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 4px;
+  border-bottom: 1px dashed #cbd5e1; /* línea clara para contrastar */
+}
+
+.tx-item:last-child {
+  border-bottom: none;
+}
+
+.tx-income {
+  color: #16a34a;
+}
+
+.tx-expense {
+  color: #dc2626;
+}
+
+/* =========================
+   MENÚ PRINCIPAL
+========================= */
+nav a {
+  color: #f8fafc; /* texto del menú visible */
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #60a5fa; /* azul claro para hover */
+}
+
+/* =========================
+   DESKTOP
+========================= */
+@media (min-width: 768px) {
+  .wallet-card {
+    max-width: 520px;
+  }
+
+  .btn-reset {
+    width: auto;
+    margin: 18px auto;
+    padding: 10px 22px;
+  }
+}
