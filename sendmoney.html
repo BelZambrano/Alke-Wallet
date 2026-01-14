@@ -2,59 +2,111 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wallet - Enviar Dinero</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <title>Alke Wallet | Enviar dinero</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
-<body style="background:#0f172a; padding:20px;">
 
-  <div class="wallet-card">
-
-  <div class="text-center mb-3">
-    <i class="bi bi-send fs-2 text-primary"></i>
-    <h4 class="mt-1">Enviar dinero</h4>
-    <small class="text-muted">Selecciona un contacto</small>
-  </div>
-
-  <!-- ALERTAS DE BOOTSTRAP -->
-  <div id="alert-container"></div>
-
-  <form id="sendForm">
-    <div class="mb-3">
-      <label class="form-label">Contacto</label>
-      <select id="contactSelect" class="form-select" required></select>
+<body class="app-page">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="menu.html">
+        Alke<span style="color:#22c55e;">Wallet</span>
+      </a>
     </div>
-    <div class="mb-3">
-      <label class="form-label">Monto</label>
-      <input type="number" id="sendAmount" class="form-control" min="1" placeholder="Ej: 5000" required>
+  </nav>
+
+  <main class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2 class="mb-0">Enviar dinero</h2>
+      <button id="toggleAddContact" class="btn btn-outline-primary btn-sm">
+        + Agregar nuevo contacto
+      </button>
     </div>
-    <button class="btn btn-primary w-100">Enviar</button>
-  </form>
-   <!-- BOTÓN PARA AGREGAR CONTACTOS -->
-    <button id="btnNuevoContacto" class="btn btn-outline-secondary w-100 mt-2">
-      + Agregar contacto
-    </button>
 
-     <!-- Botón para volver al menú -->
-    <button id="backToMenu" class="btn btn-secondary w-100 mt-2">
-      <i class="bi bi-arrow-left-circle me-1"></i> Volver al Menú
-    </button>
+    <!-- PANEL AGREGAR CONTACTO (show/hide con jQuery) -->
+    <div id="addContactPanel" class="card p-4 mb-4 d-none">
+      <h5 class="mb-3">Nuevo contacto</h5>
 
-  </div>
+      <div id="addContactAlert"></div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+      <form id="addContactForm" novalidate>
+        <div class="mb-2">
+          <label class="form-label" for="newContactName">Nombre y apellido</label>
+          <input type="text" id="newContactName" class="form-control" placeholder="Ej: Laura Fernández" required />
+          <div class="invalid-feedback">Ingresá un nombre válido</div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="newContactAlias">Alias</label>
+          <input type="text" id="newContactAlias" class="form-control" placeholder="Ej: laura.mp" required />
+          <div class="invalid-feedback">Ingresá un alias válido</div>
+        </div>
+
+        <div class="d-flex gap-2">
+          <button type="submit" class="btn btn-primary">Guardar contacto</button>
+          <button type="button" id="cancelAddContact" class="btn btn-outline-secondary">Cancelar</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- BUSCADOR + SUGERENCIAS -->
+    <div class="card p-4 mb-4">
+      <h5 class="mb-3">Buscar contacto</h5>
+
+      <div class="position-relative">
+        <input
+          type="text"
+          id="contactSearch"
+          class="form-control"
+          placeholder="Escribí una inicial, nombre o alias..."
+          autocomplete="off"
+        />
+
+        <!-- Sugerencias -->
+        <div id="contactSuggestions"
+             class="list-group position-absolute w-100 shadow d-none"
+             style="z-index:1050; max-height:220px; overflow:auto;">
+        </div>
+      </div>
+
+      <small class="text-muted d-block mt-2">
+        Elegí un contacto de la lista para habilitar el envío.
+      </small>
+
+      <div class="mt-3">
+        Contacto seleccionado:
+        <strong id="selectedContactLabel" class="text-muted">Ninguno</strong>
+      </div>
+    </div>
+
+    <!-- FORM ENVIAR -->
+    <div class="card p-4">
+      <h5 class="mb-3">Datos de envío</h5>
+
+      <div id="sendAlert"></div>
+
+      <form id="sendMoneyForm" novalidate>
+        <div class="mb-3">
+          <label for="sendAmount" class="form-label">Monto</label>
+          <input type="number" id="sendAmount" class="form-control" placeholder="Ej: 5000" min="1" required />
+          <div class="invalid-feedback">Ingresá un monto válido</div>
+        </div>
+
+        <!-- Botón oculto hasta elegir contacto -->
+        <button id="sendBtn" type="submit" class="btn btn-success w-100 d-none">
+          Enviar dinero
+        </button>
+      </form>
+
+      <a href="menu.html" class="btn btn-link mt-3 w-100">Volver al menú</a>
+    </div>
+  </main>
+
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="js/billetera.js"></script>
-
-  <script>
-    // Redirigir al menú al hacer clic
-    $('#backToMenu').click(function() {
-      window.location.href = 'menu.html';
-    });
-  </script>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
-

@@ -1,58 +1,72 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wallet - Menú Principal</title>
+  <meta charset="UTF-8" />
+  <title>Alke Wallet | Menú</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- BOOTSTRAP -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
-<body>
 
-<main class="main-wrapper">
-  <div class="wallet-wrapper">
-
-    <!-- ALERTAS DE BOOTSTRAP -->
-    <div id="alert-container"></div>
-
-    <!-- TARJETA SALDO -->
-    <div class="wallet-card text-center mb-4">
-      <p class="mb-1">Saldo disponible</p>
-      <h2 id="saldo" class="fw-bold">$0</h2>
+<body class="app-page">
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        Alke<span style="color:#22c55e;">Wallet</span>
+      </a>
     </div>
+  </nav>
 
-    <!-- BOTONES -->
-    <div class="row g-3">
-      <div class="col-12 col-md-4">
-        <button id="btnDepositar" class="action-btn w-100">
-          <i class="bi bi-plus-circle fs-2"></i>
-          <p class="mt-2 mb-0">Depositar</p>
-        </button>
+  <!-- MAIN -->
+  <main class="container mt-5">
+    <h2 class="mb-4">Resumen de tu cuenta</h2>
+
+    <!-- MENSAJE JQUERY (consigna) -->
+    <div id="menuMessage" class="alert alert-info d-none"></div>
+
+    <div class="row g-4">
+      <!-- SALDO -->
+      <div class="col-md-6">
+        <div class="card p-4">
+          <h5 class="text-muted">Saldo disponible</h5>
+          <span id="saldo" class="saldo">$ 0</span>
+        </div>
       </div>
-      <div class="col-12 col-md-4">
-        <button id="btnEnviar" class="action-btn w-100">
-          <i class="bi bi-send fs-2"></i>
-          <p class="mt-2 mb-0">Enviar</p>
-        </button>
-      </div>
-      <div class="col-12 col-md-4">
-        <button id="btnMovimientos" class="action-btn w-100">
-          <i class="bi bi-clock-history fs-2"></i>
-          <p class="mt-2 mb-0">Movimientos</p>
-        </button>
+
+      <!-- ACCIONES -->
+      <div class="col-md-6">
+        <div class="card p-4">
+          <h5 class="text-muted mb-3">Acciones</h5>
+
+          <div class="d-grid gap-2">
+            <button
+              class="btn btn-success menu-btn"
+              data-target="deposit.html">
+              Depositar
+            </button>
+
+            <button
+              class="btn btn-primary menu-btn"
+              data-target="sendmoney.html">
+              Enviar dinero
+            </button>
+
+            <button
+              class="btn btn-outline-primary menu-btn"
+              data-target="transactions.html">
+              Últimos movimientos
+            </button>
+          </div>
+        </div>
       </div>
     </div>
+  </main>
 
-  </div>
-</main>
-
-
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- SCRIPTS -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="js/billetera.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
